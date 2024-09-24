@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOUNSTROUS</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+
+    <section id="seleccionar-mascota">
+        <h1 class="tituloPrimero">FAMILIA MOUNSTRO</h1>
+
+        <h2 class="subTitulo">Elige tu mascota</h2>
+
+        <div id="tarjetoro-mascotas">
+        </div>
+
+        <button id="boton-mascota" class="boton-principal">Seleccionar</button>
+    </section>
+
+    <section id="mensaje-seleccionar-mascota">
+        <div class="superiror-botnera">
+            <button id="escoger-otra-mascota" class="boton-principal">
+                <i class="fas fa-arrow-left"></i> Atras
+            </button>
+        </div>
+
+        <div class="mensaje-interno-mascota">
+
+            <div class="div-mensaje-mascota-seleccionada">
+                <span id="mensaje-error-mostrar" class="mensaje-mostrar"></span>
+                <div id="tarjeta-mascota-sleccionada" class="tarjeta-de-mokepon">
+                    <span id="nombre-tarjeta" class="nombre-personaje"></span>
+                    <img id="img-tarjeta" src="" alt="Foto Mostro" />
+                </div>
+            </div>
+
+            <button id="boton-cerrar-mensaje" class="boton-principal">Cerrar</button>
+            <button id="boton-seguir-mascota-enemigo" class="boton-principal">Seguir</button>
+        </div>
+        
+    </section>
+
+    <section id="mensaje-seleccionar-mascota-enemigo">
+
+        <div class="mensaje-interno-mascota">
+
+            <div class="div-mensaje-mascota-seleccionada">
+                <span id="mensaje-mascota-enemigo" class="mensaje-mostrar"></span>
+                <div id="tarjeta-mascota-sleccionada" class="tarjeta-de-mokepon">
+                    <span id="nombre-tarjeta-enemigo" class="nombre-personaje"></span>
+                    <img id="img-tarjeta-enemigo" src="" alt="Foto Mostro" />
+                </div>
+            </div>
+
+            <button id="boton-seguir-ataque" class="boton-principal">Seguir</button>
+        </div>
+        
+    </section>
+
+    <section id="ver-mapa">
+        <h2 class="tituloPrimero">MAPA MOUNSTROLANDIA</h2>
+        <h2 class="subTitulo">Recorre el Mapa con tu Mounstro</h2>
+        <canvas id="mapa"></canvas>
+    </section>
+
+    <section id="seleccionar-ataque">
+        <h1 class="tituloPrimero">QUE EMPIECE LA PELEA</h1>
+        
+        <h2 class="subTitulo">!Elige tu ataque¡</h2>
+
+        <div id="botonera-ataque">
+            
+        </div>
+
+        <div id="contenedor-ataques-resultado">
+            <div id="caja-resultados">
+                <p id="resultado" class="subTitulo">RESULTADO...</p>
+
+                <section id="reiniciar">
+                    <button id="boton-reiniciar"    class="boton-principal">Reiniciar</button>
+                </section>
+            </div>
+
+        <div id="contenedor-mascotas-ataques">
+            <div class="tarjeta-mascota-ataque">
+                <div class="superiror-tarjeta-ataqeue">
+                    <div class="mascota-seleccionada">
+                        Tu mascota
+                        <span id="mascotaJugador"></span>
+                    </div>
+                </div>
+                <div class="inferior-tarjeta-ataque">
+                    <img id="tarjeta-ataque-imagen-mascota-jugador" src="" alt="imagen-mostruo" />
+                    <div class="div-ataques">
+                        <p class="titulo-ataques">ATAQUES</p>
+                        <div id="ataque-jugador" class="ataques-seguidos"></div>
+                    </div>
+                    <div class="div-ataques">
+                        <p class="titulo-ataques">RESULTADO</p>
+                        <div id="resultado-del-jugador" class="resultado-seguidos"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tarjeta-mascota-ataque">
+                <div class="superiror-tarjeta-ataqeue">
+                    <div class="mascota-seleccionada">
+                        Enemigo
+                        <span id="mascotaEnemigo"></span>
+                    </div>
+                </div>
+                <div class="inferior-tarjeta-ataque">
+                    <img id="tarjeta-ataque-imagen-mascota-enemigo" src="" alt="imagen-mostruo" />
+                    <div class="div-ataques">
+                        <p class="titulo-ataques">ATAQUES</p>
+                        <div id="ataque-enemigo" class="ataques-seguidos"></div>
+                    </div>
+                    <div class="div-ataques">
+                        <p class="titulo-ataques">RESULTADO</p>
+                        <div id="resultado-del-enemigo" class="resultado-seguidos"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="./js/mounstrous.js"></script>    
+</body>
+</html>

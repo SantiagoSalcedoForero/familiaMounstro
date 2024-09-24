@@ -1,0 +1,416 @@
+@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap');
+
+body {
+    background-color: black;
+    color: whitesmoke;
+    font-family: "Handjet", sans-serif;
+    box-sizing: border-box;
+    padding: 20px;
+    min-height: 100vh;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+}
+
+.tituloPrimero{
+    width: 100%;
+    text-align: center;
+    font-size: 80px;
+    margin: 0px;
+    color: #FB2576;
+}
+
+.subTitulo{
+    font-size: 30px;
+    margin: 0px;
+    color: #FB2576;
+    text-align: center;
+}
+
+#seleccionar-mascota {
+    display: flex;
+    box-sizing: border-box;
+    padding: 30px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#tarjetoro-mascotas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 17px;
+}
+
+.tarjeta-de-mokepon {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-origin: border-box;
+    color: black;
+    background-color: aliceblue;
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+    border: 2px solid #FB2576;
+    border-radius: 5%;
+    cursor: pointer;
+}
+
+.tarjeta-de-mokepon:hover {
+    background-color: whitesmoke;
+    border: 8px solid #FB2576;
+}
+
+.tarjeta-de-mokepon img {
+    height: 54%;
+    filter: drop-shadow(2px 2px 4px #2a0211);
+    }
+
+.nombre-personaje {
+    font-size: 18px;
+    font-weight: 900;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+}
+
+input {
+    display: none;
+}
+
+input:checked + .tarjeta-de-mokepon {
+    background-color: #3F0071;
+    border: 8px solid #FB2576;
+}
+
+input:checked + .tarjeta-de-mokepon p {
+    color: whitesmoke;
+}
+
+.boton-principal {
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 200px;
+    height: 50px;
+    margin-top: 20px;
+    border-radius: 8px;
+    border: 2px solid #FB2576;
+    background-color: #3F0071;
+    color: #FB2576;
+    font-family: "Handjet", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.boton-principal:hover {
+    color: #3F0071;
+    background-color: #FB2576;
+}
+
+.boton-principal:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.boton-ataques {
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100px;
+    height: 50px;
+    margin-top: 20px;
+    border-radius: 8px;
+    border: 2px solid #FB2576;
+    background-color: #3F0071;
+    color: #FB2576;
+    font-family: "Handjet", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.boton-ataques:hover {
+    color: #3F0071;
+    background-color: #FB2576;
+}
+
+.boton-ataques:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+#mensaje-seleccionar-mascota {
+    display: flex;
+    box-sizing: border-box;
+    padding: 30px;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.mensaje-interno-mascota {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    padding: 30px;
+}
+
+.superiror-botnera {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.mensaje-mostrar {
+    font-size: 30px;
+    font-weight: 500;
+    
+}
+
+.div-mensaje-mascota-seleccionada {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    box-sizing: border-box;
+    padding: 30px;
+    border: 2px solid #FB2576;
+    border-radius: 8px;
+}
+
+#mensaje-seleccionar-mascota-enemigo {
+    display: flex;
+    box-sizing: border-box;
+    padding: 30px;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#seleccionar-ataque {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+#botonera-ataque {
+    display: flex;
+    gap: 20px;
+}
+
+#contenedor-ataques-resultado {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+#contenedor-mascotas-ataques {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    justify-content: space-between;
+    align-items: start;
+    align-content: space-evenly;
+}
+
+
+#caja-resultados {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border: 2px solid #FB2576;
+    border-radius: 8px;
+    width: 80%;
+    min-height: 50px;
+    padding: 15px;
+}
+
+.tarjeta-mascota-ataque {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 300px;
+    padding:20px;
+    border: 4px solid #FB2576;
+    border-radius: 8px;
+    gap: 15px;
+    background-color: whitesmoke;
+    min-height: 220px;
+    justify-self: center;
+}
+
+.superiror-tarjeta-ataqeue {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #FB2576;
+}
+
+.inferior-tarjeta-ataque {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: stretch;
+    row-gap: 20px;
+}
+
+.inferior-tarjeta-ataque img {
+    height: 100px;
+    filter: drop-shadow(2px 2px 4px #2a0211);
+    align-self: center;
+}
+
+.mascota-seleccionada {
+    color: #3F0071;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.ataques-seguidos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #FB2576;
+}
+
+.ataques-seguidos p {
+    margin: 10px 0px 10px 0px;
+    color: #3F0071;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.resultado-seguidos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #FB2576;
+}
+
+.resultado-seguidos p {
+    margin: 10px 0px 10px 0px;
+    color: #3F0071;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.div-ataques {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 5px;
+}
+
+.titulo-ataques {
+    color: #3F0071;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0px;
+}
+
+@media (max-width: 420px) {
+    .tituloPrimero {
+        text-align: center;
+        font-size: 60px;
+    }
+
+    #seleccionar-mascota {
+        width: 100%;
+    }
+
+    #tarjetoro-mascotas {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, auto);
+        gap: 10px;
+    }
+
+    .tarjeta-de-mokepon {
+        width: 170px;
+        height: 170px;
+    }
+
+    .nombre-personaje {
+        font-size: 15px;
+        margin: 0px;
+    }
+
+    #seleccionar-ataque {
+        padding: 0px;
+        gap: 15px; 
+    }
+
+    #botonera-ataque {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 100%;
+        gap: 0px;
+        padding-bottom: 15px
+    }
+
+    #caja-resultados{
+        width: 100%;
+        padding: 10px;
+    }
+
+    #contenedor-mascotas-ataques{
+        gap: 10px;
+    }
+
+    .tarjeta-mascota-ataque {
+        padding: 10px;
+        gap: 10px;
+        min-height: 140px;
+        justify-self: unset;
+        min-width: 0px;
+    }
+
+    .mascota-seleccionada {
+        font-size: 16px;
+    }
+    
+    .inferior-tarjeta-ataque img {
+        height: 45px;
+        padding: 5px;
+    }
+    
+    .titulo-ataques {
+        font-size: 10px;
+    }
+
+    .ataques-seguidos p {
+        font-size: 10px;
+    }
+
+    .resultado-seguidos p {
+        font-size: 8px;
+    }
+}
