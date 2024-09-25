@@ -157,7 +157,7 @@ function iniciarJuego() {
 
     botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador)
     
-    botonSeguirAtaques.addEventListener("click", mostrarSeccionAtaques)
+    botonSeguirAtaques.addEventListener("click", mostrarMapa)
     
     botonReiniciar.addEventListener("click", reiniciarjuego)
 
@@ -387,10 +387,15 @@ function arayAtaquesMascota(mascota) {
     return arrayAtaques
 }
 
+function mostrarMapa() {
+    mostrarOcultarSeccion("mensaje-seleccionar-mascota-enemigo", "none")
+    mostrarOcultarSeccion("ver-mapa", "block")
+}
+
 function mostrarSeccionAtaques() {
     imagenMacotaJugadorAtaque.src = imgMascotaJugadorGlobal
 
-    mostrarOcultarSeccion("mensaje-seleccionar-mascota-enemigo", "none")
+
 
     let ataquesMountroJugador = arayAtaquesMascota(mascotasJugadorGlobal)
     ataquesMountroJugador.forEach((ataque) => {
