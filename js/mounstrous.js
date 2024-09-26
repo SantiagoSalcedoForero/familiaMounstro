@@ -1,4 +1,4 @@
-//Clase 58
+//Clase 63
 
 const botonMascotaJugador = document.getElementById("boton-mascota")
 
@@ -68,6 +68,8 @@ let botonesA = []
 let ataqueJugadroArreglo = []
 let arrayResultadoJugador = []
 let arrayResultadoEnemigo = []
+let lienzo = mapa.getContext("2d")
+let intervalo
 
 class Mounstro {
     constructor(nombre, foto, vida) {
@@ -75,6 +77,14 @@ class Mounstro {
         this.foto = foto
         this.vida = vida
         this.ataques = []
+        this.x = 20
+        this.y = 30
+        this.ancho = 80
+        this.alto = 80
+        this.mapaFoto = new Image()
+        this.mapaFoto.src = foto
+        this.velocidadX = 0
+        this.velocidadY = 0
     }
 }
 
@@ -389,7 +399,8 @@ function arayAtaquesMascota(mascota) {
 
 function mostrarMapa() {
     mostrarOcultarSeccion("mensaje-seleccionar-mascota-enemigo", "none")
-    mostrarOcultarSeccion("ver-mapa", "block")
+    mostrarOcultarSeccion("ver-mapa", "flex")
+    intervalo = setInterval(pintarPersonaje, 50)
 }
 
 function mostrarSeccionAtaques() {
@@ -452,6 +463,44 @@ function aleatorio(min, max) {
 function atrasSelecionarMascota() {
     mostrarOcultarSeccion("mensaje-seleccionar-mascota", "none")
     mostrarOcultarSeccion("seleccionar-mascota", "flex")
+}
+
+function pintarPersonaje() {
+    manumon.x = manumon.x + manumon.velocidadX
+    manumon.y = manumon.y + manumon.velocidadY
+    lienzo.clearRect(0, 0, mapa.width, mapa.height)
+    lienzo.drawImage(
+        manumon.mapaFoto,
+        manumon.x,
+        manumon.y,
+        manumon.ancho,
+        manumon.alto
+    )
+}
+
+function moverIzquierda() {
+    manumon.velocidadX = -5
+    pintarPersonaje()
+}
+
+function moverArriba() {
+    manumon.velocidadY = -5
+    pintarPersonaje()
+}
+
+function moverAbajo() {
+    manumon.velocidadY = +5
+    pintarPersonaje()
+}
+
+function moverDrecha() {
+    manumon.velocidadX = +5
+    pintarPersonaje()
+}
+
+function detenerMovimiento() {
+    manumon.velocidadX = 0
+    manumon.velocidadY = 0
 }
 
 window.addEventListener("load", iniciarJuego)

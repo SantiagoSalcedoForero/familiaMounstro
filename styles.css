@@ -336,6 +336,45 @@ input:checked + .tarjeta-de-mokepon p {
     margin: 0px;
 }
 
+#ver-mapa {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+#mapa {
+    border: 2px solid #FB2576;
+    border-radius: 8px;
+}
+
+.botonera-mover {
+    display: flex;
+    gap: 5px;
+    align-items: end;
+}
+
+.botoner-mover-interna {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.boton-flecha {
+    background-color: transparent;
+    box-sizing: border-box;
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    border: 2px solid #FB2576;
+    border-radius: 8px;
+}
+
+.icono-flechas {
+    color: #FB2576;
+    font-size: 24px;
+}
+
 @media (max-width: 420px) {
     .tituloPrimero {
         text-align: center;
