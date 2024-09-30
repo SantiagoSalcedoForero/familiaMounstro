@@ -1,4 +1,4 @@
-//Clase 65
+//Clase 66
 
 const botonMascotaJugador = document.getElementById("boton-mascota")
 
@@ -70,6 +70,8 @@ let arrayResultadoJugador = []
 let arrayResultadoEnemigo = []
 let lienzo = mapa.getContext("2d")
 let intervalo
+let mapaBackground = new Image()
+mapaBackground.src = './assets/mapaMounstors.png'
 
 class Mounstro {
     constructor(nombre, foto, vida) {
@@ -86,6 +88,10 @@ class Mounstro {
         this.velocidadX = 0
         this.velocidadY = 0
     }
+
+    static obtenerMonstruo(nombre, monstruos) {
+        return monstruos.find((monstruo) => monstruo.nombre === nombre);
+      }
 }
 
 let manumon = new Mounstro('MANUMON', './assets/Manumon.png', 5)
@@ -181,32 +187,32 @@ function seleccionarMascotaJugador() {
     if (inputMajomon.checked) {
         spanMascotaJugador.innerHTML = inputMajomon.id
         mascotaSeleccionadaJugador = inputMajomon.id
-        mascotasJugadorGlobal = inputMajomon.id
+        mascotasJugadorGlobal = Mounstro.obtenerMonstruo(inputMajomon.id, mounstros)
         imgMascotaJugadorGlobal = inputMajomon.value
     } else if (inputDavidmon.checked) {
         spanMascotaJugador.innerHTML = inputDavidmon.id
         mascotaSeleccionadaJugador = inputDavidmon.id
-        mascotasJugadorGlobal = inputDavidmon.id
+        mascotasJugadorGlobal = Mounstro.obtenerMonstruo(inputDavidmon.id, mounstros)
         imgMascotaJugadorGlobal = inputDavidmon.value
     } else if (inputAlimon.checked) {
         spanMascotaJugador.innerHTML = inputAlimon.id
         mascotaSeleccionadaJugador = inputAlimon.id
-        mascotasJugadorGlobal = inputAlimon.id
+        mascotasJugadorGlobal = Mounstro.obtenerMonstruo(inputAlimon.id, mounstros)
         imgMascotaJugadorGlobal = inputAlimon.value
     } else if (inputManumon.checked) {
         spanMascotaJugador.innerHTML = inputManumon.id
         mascotaSeleccionadaJugador = inputManumon.id
-        mascotasJugadorGlobal = inputManumon.id
+        mascotasJugadorGlobal = Mounstro.obtenerMonstruo(inputManumon.id, mounstros)
         imgMascotaJugadorGlobal = inputManumon.value
     } else if (inputSantimon.checked) {
         spanMascotaJugador.innerHTML = inputSantimon.id
         mascotaSeleccionadaJugador = inputSantimon.id
-        mascotasJugadorGlobal = inputSantimon.id
+        mascotasJugadorGlobal = Mounstro.obtenerMonstruo(inputSantimon.id, mounstros)
         imgMascotaJugadorGlobal = inputSantimon.value
     } else if (inputTeomon.checked) {
         spanMascotaJugador.innerHTML = inputTeomon.id
         mascotaSeleccionadaJugador = inputTeomon.id
-        mascotasJugadorGlobal = inputTeomon.id
+        mascotasJugadorGlobal = Mounstro.obtenerMonstruo(inputTeomon.id, mounstros)
         imgMascotaJugadorGlobal = inputTeomon.value
     } else {
         mascotaSeleccionadaJugador = "NINGUNA"
@@ -381,7 +387,7 @@ function mensajeMascotaEnemigo (mensaje, mascota, imagenMascota) {
 
 function mensajeError(mensaje) {
     mensajeErrorMostrar.innerHTML = mensaje
-    nombreMascotaSeleccionada.innerHTML = mascotasJugadorGlobal
+    nombreMascotaSeleccionada.innerHTML = mascotasJugadorGlobal.nombre
     imagenMascotaSeleccionada.src = imgMascotaJugadorGlobal
 
     botonCerrarMensaje.addEventListener("click", cerrarMensajeError)
@@ -400,11 +406,20 @@ function arayAtaquesMascota(mascota) {
 function mostrarMapa() {
     mostrarOcultarSeccion("mensaje-seleccionar-mascota-enemigo", "none")
     mostrarOcultarSeccion("ver-mapa", "flex")
-    mapa.style.width = '60%';
-    mapa.style.height = '1/1';
+    
     mapa.width = 800
     mapa.height = 800
-    intervalo = setInterval(pintarPersonaje, 50)
+
+    function actualizarTamañoCanva() {
+        let anchoPantalla = window.innerWidth
+        mapa.style.width = (anchoPantalla < 510) ? '300px' : '400px'
+        mapa.style.height = (anchoPantalla < 510) ? '300px' : '400px'
+    }
+
+    actualizarTamañoCanva()
+    window.addEventListener('resize', actualizarTamañoCanva)
+
+    intervalo = setInterval(pintarCanvas, 50)
 
     window.addEventListener('keydown', sePrecionoUnaTecla)
     window.addEventListener('keyup', detenerMovimiento)
@@ -415,7 +430,7 @@ function mostrarSeccionAtaques() {
 
 
 
-    let ataquesMountroJugador = arayAtaquesMascota(mascotasJugadorGlobal)
+    let ataquesMountroJugador = arayAtaquesMascota(mascotasJugadorGlobal.nombre)
     ataquesMountroJugador.forEach((ataque) => {
         ataqeuJugadorBoton = `
             <button id=${ataque.id} class="boton-ataques BAtaque">${ataque.nombre}</button>
@@ -472,41 +487,49 @@ function atrasSelecionarMascota() {
     mostrarOcultarSeccion("seleccionar-mascota", "flex")
 }
 
-function pintarPersonaje() {
-    manumon.x = manumon.x + manumon.velocidadX
-    manumon.y = manumon.y + manumon.velocidadY
+function pintarCanvas() {
+
+    mascotasJugadorGlobal.x = mascotasJugadorGlobal.x + mascotasJugadorGlobal.velocidadX
+    mascotasJugadorGlobal.y = mascotasJugadorGlobal.y + mascotasJugadorGlobal.velocidadY
     lienzo.clearRect(0, 0, mapa.width, mapa.height)
     lienzo.drawImage(
-        manumon.mapaFoto,
-        manumon.x,
-        manumon.y,
-        manumon.ancho,
-        manumon.alto
+        mapaBackground,
+        0,
+        0,
+        mapa.width,
+        mapa.height
+    )
+    lienzo.drawImage(
+        mascotasJugadorGlobal.mapaFoto,
+        mascotasJugadorGlobal.x,
+        mascotasJugadorGlobal.y,
+        mascotasJugadorGlobal.ancho,
+        mascotasJugadorGlobal.alto
     )
 }
 
 function moverIzquierda() {
     botonActivado("botonIzquierda", true)
-    manumon.velocidadX = -5
-    pintarPersonaje()
+    mascotasJugadorGlobal.velocidadX = -5
+    pintarCanvas()
 }
 
 function moverArriba() {
     botonActivado("botonArriba", true)
-    manumon.velocidadY = -5
-    pintarPersonaje()
+    mascotasJugadorGlobal.velocidadY = -5
+    pintarCanvas()
 }
 
 function moverAbajo() {
     botonActivado("botonAbajo", true)
-    manumon.velocidadY = +5
-    pintarPersonaje()
+    mascotasJugadorGlobal.velocidadY = +5
+    pintarCanvas()
 }
 
 function moverDrecha() {
     botonActivado("botonDerecha", true)
-    manumon.velocidadX = +5
-    pintarPersonaje()
+    mascotasJugadorGlobal.velocidadX = +5
+    pintarCanvas()
 }
 
 function detenerMovimiento() {
@@ -514,8 +537,8 @@ function detenerMovimiento() {
     botonActivado("botonArriba", false)
     botonActivado("botonAbajo", false)
     botonActivado("botonDerecha", false)
-    manumon.velocidadX = 0
-    manumon.velocidadY = 0
+    mascotasJugadorGlobal.velocidadX = 0
+    mascotasJugadorGlobal.velocidadY = 0
 }
 
 function sePrecionoUnaTecla(event) {

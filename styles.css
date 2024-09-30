@@ -384,13 +384,19 @@ input:checked + .tarjeta-de-mokepon p {
 }
 
 @media (max-width: 420px) {
+body {
+    padding: 10px;
+}
+
     .tituloPrimero {
         text-align: center;
-        font-size: 60px;
+        font-size: 55px;
+        max-width: 380px;
     }
 
     #seleccionar-mascota {
         width: 100%;
+        padding: 0px;
     }
 
     #tarjetoro-mascotas {
@@ -401,8 +407,8 @@ input:checked + .tarjeta-de-mokepon p {
     }
 
     .tarjeta-de-mokepon {
-        width: 170px;
-        height: 170px;
+        width: 150px;
+        height: 150px;
     }
 
     .nombre-personaje {
