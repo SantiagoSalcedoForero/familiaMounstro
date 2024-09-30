@@ -370,9 +370,17 @@ input:checked + .tarjeta-de-mokepon p {
     border-radius: 8px;
 }
 
-.icono-flechas {
+.boton-flecha i {
     color: #FB2576;
     font-size: 24px;
+}
+
+.boton-activado {
+    border-color: #3F0071;
+}
+
+.boton-activado i {
+    color: #3F0071;
 }
 
 @media (max-width: 420px) {

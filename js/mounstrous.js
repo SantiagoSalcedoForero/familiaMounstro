@@ -1,4 +1,4 @@
-//Clase 63
+//Clase 65
 
 const botonMascotaJugador = document.getElementById("boton-mascota")
 
@@ -400,7 +400,14 @@ function arayAtaquesMascota(mascota) {
 function mostrarMapa() {
     mostrarOcultarSeccion("mensaje-seleccionar-mascota-enemigo", "none")
     mostrarOcultarSeccion("ver-mapa", "flex")
+    mapa.style.width = '60%';
+    mapa.style.height = '1/1';
+    mapa.width = 800
+    mapa.height = 800
     intervalo = setInterval(pintarPersonaje, 50)
+
+    window.addEventListener('keydown', sePrecionoUnaTecla)
+    window.addEventListener('keyup', detenerMovimiento)
 }
 
 function mostrarSeccionAtaques() {
@@ -479,28 +486,69 @@ function pintarPersonaje() {
 }
 
 function moverIzquierda() {
+    botonActivado("botonIzquierda", true)
     manumon.velocidadX = -5
     pintarPersonaje()
 }
 
 function moverArriba() {
+    botonActivado("botonArriba", true)
     manumon.velocidadY = -5
     pintarPersonaje()
 }
 
 function moverAbajo() {
+    botonActivado("botonAbajo", true)
     manumon.velocidadY = +5
     pintarPersonaje()
 }
 
 function moverDrecha() {
+    botonActivado("botonDerecha", true)
     manumon.velocidadX = +5
     pintarPersonaje()
 }
 
 function detenerMovimiento() {
+    botonActivado("botonIzquierda", false)
+    botonActivado("botonArriba", false)
+    botonActivado("botonAbajo", false)
+    botonActivado("botonDerecha", false)
     manumon.velocidadX = 0
     manumon.velocidadY = 0
+}
+
+function sePrecionoUnaTecla(event) {
+    switch (event.key) {
+        case 'ArrowLeft':
+        case 'a':
+            moverIzquierda()
+            break
+        case 'ArrowUp':
+        case 'w':
+            moverArriba()
+            break
+        case 'ArrowDown':
+        case 's':
+            moverAbajo()
+            break
+        case 'ArrowRight':
+        case 'd':
+            moverDrecha()
+            break
+        default:
+            break
+    }
+}
+
+function botonActivado(idBoton, activado) {
+    const boton = document.getElementById(idBoton)
+
+    if (activado) {
+        boton.classList.add('boton-activado')
+    } else {
+        boton.classList.remove('boton-activado')
+    }
 }
 
 window.addEventListener("load", iniciarJuego)
