@@ -1,4 +1,4 @@
-//Clase 66
+//Clase 67
 
 const botonMascotaJugador = document.getElementById("boton-mascota")
 
@@ -153,12 +153,12 @@ teomon.ataques.push(
     {nombre: '💧', id: 'boton-agua', tipo: 'AGUA'},
 )
 
-let manumonEnemigo = new Mounstro('MANUMON', './assets/Manumon.png', 5, './assets/manumonMapa', 80, 120)
-let santimonEnemigo = new Mounstro('SANTIMON', './assets/Santimon.png', 5, './assets/santimonMapa', 150, 95)
-let majomonEnemigo = new Mounstro('MAJOMON', './assets/Majomon.png', 5, './assets/majomonMapa', 200, 190)
-let davidmonEnemigo = new Mounstro('DAVIDMON', './assets/Davidmon.png', 5, './assets/davidmonMapa', 500,500)
-let alimonEnemigo = new Mounstro('ALIMON', './assets/Alimon.png', 5, './assets/alimonMapa', 700, 700)
-let teomonEnemigo = new Mounstro('TEOMON', './assets/Teomon.png', 5, './assets/teomonMapa', 200, 750)
+let manumonEnemigo = new Mounstro('MANUMON', './assets/Manumon.png', 5, './assets/manumonMapa.png', 80, 340)
+let santimonEnemigo = new Mounstro('SANTIMON', './assets/Santimon.png', 5, './assets/santimonMapa.png', 650, 95)
+let majomonEnemigo = new Mounstro('MAJOMON', './assets/Majomon.png', 5, './assets/majomonMapa.png', 400, 300)
+let davidmonEnemigo = new Mounstro('DAVIDMON', './assets/Davidmon.png', 5, './assets/davidmonMapa.png', 500,500)
+let alimonEnemigo = new Mounstro('ALIMON', './assets/Alimon.png', 5, './assets/alimonMapa.png', 700, 700)
+let teomonEnemigo = new Mounstro('TEOMON', './assets/Teomon.png', 5, './assets/teomonMapa.png', 200, 710)
 
 mounstros.push(manumon, santimon, majomon, davidmon, alimon, teomon)
 
