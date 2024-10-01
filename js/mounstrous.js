@@ -74,17 +74,17 @@ let mapaBackground = new Image()
 mapaBackground.src = './assets/mapaMounstors.png'
 
 class Mounstro {
-    constructor(nombre, foto, vida) {
+    constructor(nombre, foto, vida, fotoMapa, x = 10, y = 10) {
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
         this.ataques = []
-        this.x = 20
-        this.y = 30
+        this.x = x
+        this.y = y
         this.ancho = 80
         this.alto = 80
         this.mapaFoto = new Image()
-        this.mapaFoto.src = foto
+        this.mapaFoto.src = fotoMapa
         this.velocidadX = 0
         this.velocidadY = 0
     }
@@ -92,9 +92,19 @@ class Mounstro {
     static obtenerMonstruo(nombre, monstruos) {
         return monstruos.find((monstruo) => monstruo.nombre === nombre);
       }
+
+    pintarMounstro() {
+        lienzo.drawImage(
+            this.mapaFoto,
+            this.x,
+            this.y,
+            this.ancho,
+            this.alto
+        )
+    }
 }
 
-let manumon = new Mounstro('MANUMON', './assets/Manumon.png', 5)
+let manumon = new Mounstro('MANUMON', './assets/Manumon.png', 5, './assets/manumonMapa.png')
 manumon.ataques.push(
     {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
     {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
@@ -102,7 +112,7 @@ manumon.ataques.push(
     {nombre: '🥌', id: 'boton-tierra', tipo: 'TIERRA'},
     {nombre: '💧', id: 'boton-agua', tipo: 'AGUA'},
 )
-let santimon = new Mounstro('SANTIMON', './assets/Santimon.png', 5)
+let santimon = new Mounstro('SANTIMON', './assets/Santimon.png', 5, './assets/santimonMapa.png')
 santimon.ataques.push(
     {nombre: '🌱', id: 'boton-tierra', tipo: 'TIERRA'},
     {nombre: '🌱', id: 'boton-tierra', tipo: 'TIERRA'},
@@ -110,7 +120,7 @@ santimon.ataques.push(
     {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
     {nombre: '💧', id: 'boton-agua', tipo: 'AGUA'},
 )
-let majomon = new Mounstro('MAJOMON', './assets/Majomon.png', 5)
+let majomon = new Mounstro('MAJOMON', './assets/Majomon.png', 5, './assets/majomonMapa.png')
 majomon.ataques.push(
     {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
     {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
@@ -118,7 +128,7 @@ majomon.ataques.push(
     {nombre: '🌱', id: 'boton-tierra', tipo: 'TIERRA'},
     {nombre: '💧', id: 'boton-agua', tipo: 'AGUA'},
 )
-let davidmon = new Mounstro('DAVIDMON', './assets/Davidmon.png', 5)
+let davidmon = new Mounstro('DAVIDMON', './assets/Davidmon.png', 5, './assets/davidmonMapa.png')
 davidmon.ataques.push(
     {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
     {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
@@ -126,7 +136,7 @@ davidmon.ataques.push(
     {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
     {nombre: '🌱', id: 'boton-tierra', tipo: 'TIERRA'},
 )
-let alimon = new Mounstro('ALIMON', './assets/Alimon.png', 5)
+let alimon = new Mounstro('ALIMON', './assets/Alimon.png', 5, './assets/alimonMapa.png')
 alimon.ataques.push(
     {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
     {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
@@ -134,7 +144,7 @@ alimon.ataques.push(
     {nombre: '🌱', id: 'boton-tierra', tipo: 'TIERRA'},
     {nombre: '💧', id: 'boton-agua', tipo: 'AGUA'},
 )
-let teomon = new Mounstro('TEOMON', './assets/Teomon.png', 5)
+let teomon = new Mounstro('TEOMON', './assets/Teomon.png', 5, './assets/teomonMapa.png')
 teomon.ataques.push(
     {nombre: '🌱', id: 'boton-tierra', tipo: 'TIERRA'},
     {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
@@ -142,6 +152,13 @@ teomon.ataques.push(
     {nombre: '💧', id: 'boton-agua', tipo: 'AGUA'},
     {nombre: '💧', id: 'boton-agua', tipo: 'AGUA'},
 )
+
+let manumonEnemigo = new Mounstro('MANUMON', './assets/Manumon.png', 5, './assets/manumonMapa', 80, 120)
+let santimonEnemigo = new Mounstro('SANTIMON', './assets/Santimon.png', 5, './assets/santimonMapa', 150, 95)
+let majomonEnemigo = new Mounstro('MAJOMON', './assets/Majomon.png', 5, './assets/majomonMapa', 200, 190)
+let davidmonEnemigo = new Mounstro('DAVIDMON', './assets/Davidmon.png', 5, './assets/davidmonMapa', 500,500)
+let alimonEnemigo = new Mounstro('ALIMON', './assets/Alimon.png', 5, './assets/alimonMapa', 700, 700)
+let teomonEnemigo = new Mounstro('TEOMON', './assets/Teomon.png', 5, './assets/teomonMapa', 200, 750)
 
 mounstros.push(manumon, santimon, majomon, davidmon, alimon, teomon)
 
@@ -499,13 +516,13 @@ function pintarCanvas() {
         mapa.width,
         mapa.height
     )
-    lienzo.drawImage(
-        mascotasJugadorGlobal.mapaFoto,
-        mascotasJugadorGlobal.x,
-        mascotasJugadorGlobal.y,
-        mascotasJugadorGlobal.ancho,
-        mascotasJugadorGlobal.alto
-    )
+    mascotasJugadorGlobal.pintarMounstro()
+    manumonEnemigo.pintarMounstro()
+    santimonEnemigo.pintarMounstro()
+    majomonEnemigo.pintarMounstro()
+    davidmonEnemigo.pintarMounstro()
+    alimonEnemigo.pintarMounstro()
+    teomonEnemigo.pintarMounstro()
 }
 
 function moverIzquierda() {
