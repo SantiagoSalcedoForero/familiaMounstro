@@ -1,4 +1,4 @@
-//Clase 67
+//Clase 70
 
 const botonMascotaJugador = document.getElementById("boton-mascota")
 
@@ -47,6 +47,8 @@ let botonFuego
 let botonAgua
 let botonTierra
 
+let enableTecla = true
+
 let mounstros = []
 let opcionDeMounstro
 let inputMajomon
@@ -74,15 +76,15 @@ let mapaBackground = new Image()
 mapaBackground.src = './assets/mapaMounstors.png'
 
 class Mounstro {
-    constructor(nombre, foto, vida, fotoMapa, x = 10, y = 10) {
+    constructor(nombre, foto, vida, fotoMapa) {
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
         this.ataques = []
-        this.x = x
-        this.y = y
         this.ancho = 80
         this.alto = 80
+        this.x = aleatorio(0, 800 - this.ancho)
+        this.y = aleatorio(0, 800 - this.alto)
         this.mapaFoto = new Image()
         this.mapaFoto.src = fotoMapa
         this.velocidadX = 0
@@ -153,12 +155,55 @@ teomon.ataques.push(
     {nombre: '💧', id: 'boton-agua', tipo: 'AGUA'},
 )
 
-let manumonEnemigo = new Mounstro('MANUMON', './assets/Manumon.png', 5, './assets/manumonMapa.png', 80, 340)
-let santimonEnemigo = new Mounstro('SANTIMON', './assets/Santimon.png', 5, './assets/santimonMapa.png', 650, 95)
-let majomonEnemigo = new Mounstro('MAJOMON', './assets/Majomon.png', 5, './assets/majomonMapa.png', 400, 300)
-let davidmonEnemigo = new Mounstro('DAVIDMON', './assets/Davidmon.png', 5, './assets/davidmonMapa.png', 500,500)
-let alimonEnemigo = new Mounstro('ALIMON', './assets/Alimon.png', 5, './assets/alimonMapa.png', 700, 700)
-let teomonEnemigo = new Mounstro('TEOMON', './assets/Teomon.png', 5, './assets/teomonMapa.png', 200, 710)
+let manumonEnemigo = new Mounstro('MANUMON', './assets/Manumon.png', 5, './assets/manumonMapa.png')
+manumonEnemigo.ataques.push(
+    {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
+    {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
+    {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
+    {nombre: '🥌', id: 'boton-tierra', tipo: 'TIERRA'},
+    {nombre: '💧', id: 'boton-agua', tipo: 'AGUA'},
+)
+
+let santimonEnemigo = new Mounstro('SANTIMON', './assets/Santimon.png', 5, './assets/santimonMapa.png')
+santimonEnemigo.ataques.push(
+    {nombre: '🌱', id: 'boton-tierra', tipo: 'TIERRA'},
+    {nombre: '🌱', id: 'boton-tierra', tipo: 'TIERRA'},
+    {nombre: '🌱', id: 'boton-tierra', tipo: 'TIERRA'},
+    {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
+    {nombre: '💧', id: 'boton-agua', tipo: 'AGUA'},
+)
+let majomonEnemigo = new Mounstro('MAJOMON', './assets/Majomon.png', 5, './assets/majomonMapa.png')
+majomonEnemigo.ataques.push(
+    {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
+    {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
+    {nombre: '🌱', id: 'boton-tierra', tipo: 'TIERRA'},
+    {nombre: '🌱', id: 'boton-tierra', tipo: 'TIERRA'},
+    {nombre: '💧', id: 'boton-agua', tipo: 'AGUA'},
+)
+let davidmonEnemigo = new Mounstro('DAVIDMON', './assets/Davidmon.png', 5, './assets/davidmonMapa.png')
+davidmonEnemigo.ataques.push(
+    {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
+    {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
+    {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
+    {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
+    {nombre: '🌱', id: 'boton-tierra', tipo: 'TIERRA'},
+)
+let alimonEnemigo = new Mounstro('ALIMON', './assets/Alimon.png', 5, './assets/alimonMapa.png')
+alimonEnemigo.ataques.push(
+    {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
+    {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
+    {nombre: '🌱', id: 'boton-tierra', tipo: 'TIERRA'},
+    {nombre: '🌱', id: 'boton-tierra', tipo: 'TIERRA'},
+    {nombre: '💧', id: 'boton-agua', tipo: 'AGUA'},
+)
+let teomonEnemigo = new Mounstro('TEOMON', './assets/Teomon.png', 5, './assets/teomonMapa.png')
+teomonEnemigo.ataques.push(
+    {nombre: '🌱', id: 'boton-tierra', tipo: 'TIERRA'},
+    {nombre: '🔥', id: 'boton-fuego', tipo: 'FUEGO'},
+    {nombre: '💧', id: 'boton-agua', tipo: 'AGUA'},
+    {nombre: '💧', id: 'boton-agua', tipo: 'AGUA'},
+    {nombre: '💧', id: 'boton-agua', tipo: 'AGUA'},
+)
 
 mounstros.push(manumon, santimon, majomon, davidmon, alimon, teomon)
 
@@ -190,13 +235,13 @@ function iniciarJuego() {
 
     botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador)
     
-    botonSeguirAtaques.addEventListener("click", mostrarMapa)
+    botonSeguirAtaques.addEventListener("click", mostrarSeccionAtaques)
     
     botonReiniciar.addEventListener("click", reiniciarjuego)
 
     botonAtrasMensajeSeleccionarMascota.addEventListener("click", atrasSelecionarMascota)
     
-    botonSeguirMensajeSeleccionarMasota.addEventListener("click", seleccionarMascotaEnemigo)   
+    botonSeguirMensajeSeleccionarMasota.addEventListener("click", mostrarMapa)   
 }
 
 function seleccionarMascotaJugador() {
@@ -248,48 +293,35 @@ function seleccionarMascotaJugador() {
         mostrarOcultarSeccion ("boton-seguir-mascota-enemigo", "flex")
         mostrarOcultarSeccion("tarjeta-mascota-sleccionada", "flex")
         mensajeError("Tu mascota Seleccionada es " + mascotaSeleccionadaJugador)
-        //mostrarOcultarSeccion("seleccionar-mascota", "none")
-        //mostrarOcultarSeccion("seleccionar-ataque", "block")
     }
 
-    //seleccionarMascotaEnemigo()
 }
 
-function seleccionarMascotaEnemigo() {
+function seleccionarMascotaEnemigo(enemigoSelecionado) {
 
-    mostrarOcultarSeccion("mensaje-seleccionar-mascota", "none")
+    mostrarOcultarSeccion("ver-mapa", "none")
 
-    let mascotaEnemigoAleatorio = aleatorio(0, mounstros.length -1)
-    
-    spanMascotaEnemigo.innerHTML = mounstros[mascotaEnemigoAleatorio].nombre
-    mascotaEmenigo = mounstros[mascotaEnemigoAleatorio].nombre
-    imagenMascotaEnemigo = mounstros[mascotaEnemigoAleatorio].foto
-
-    ataqueMounstroEnemigo = mounstros[mascotaEnemigoAleatorio].ataques
-
+    spanMascotaEnemigo.innerHTML = enemigoSelecionado.nombre
+    mascotaEmenigo = enemigoSelecionado.nombre
+    imagenMascotaEnemigo = enemigoSelecionado.foto
+    ataqueMounstroEnemigo = enemigoSelecionado.ataques
     mensajeMascotaEnemigo("La mascota del ENEMIGO es " + mascotaEmenigo, mascotaEmenigo, imagenMascotaEnemigo)
 
     mostrarOcultarSeccion("mensaje-seleccionar-mascota-enemigo", "flex")
-
-    
 }
 
 function ataqueFuego() {
     ataqueJugador = "FUEGO"
-
     ataqueEnemigoAleatorio()
-
 }
 
 function ataqueAgua() {
     ataqueJugador = "AGUA"
-   
     ataqueEnemigoAleatorio()   
 }
 
 function ataqeuTierra() {
     ataqueJugador = "TIERRA"
-   
     ataqueEnemigoAleatorio()
 }
 
@@ -421,7 +453,7 @@ function arayAtaquesMascota(mascota) {
 }
 
 function mostrarMapa() {
-    mostrarOcultarSeccion("mensaje-seleccionar-mascota-enemigo", "none")
+    mostrarOcultarSeccion("mensaje-seleccionar-mascota", "none")
     mostrarOcultarSeccion("ver-mapa", "flex")
     
     mapa.width = 800
@@ -445,8 +477,6 @@ function mostrarMapa() {
 function mostrarSeccionAtaques() {
     imagenMacotaJugadorAtaque.src = imgMascotaJugadorGlobal
 
-
-
     let ataquesMountroJugador = arayAtaquesMascota(mascotasJugadorGlobal.nombre)
     ataquesMountroJugador.forEach((ataque) => {
         ataqeuJugadorBoton = `
@@ -461,7 +491,7 @@ function mostrarSeccionAtaques() {
     botonesA = document.querySelectorAll(".BAtaque")
 
     secuenciaAtaques()
-
+    mostrarOcultarSeccion("mensaje-seleccionar-mascota-enemigo", "none")
     mostrarOcultarSeccion("seleccionar-ataque", "flex")
 }
 
@@ -523,6 +553,15 @@ function pintarCanvas() {
     davidmonEnemigo.pintarMounstro()
     alimonEnemigo.pintarMounstro()
     teomonEnemigo.pintarMounstro()
+
+    if (mascotasJugadorGlobal.velocidadX !== 0 || mascotasJugadorGlobal.velocidadY !== 0) {
+        revisarColision(manumonEnemigo)
+        revisarColision(santimonEnemigo)
+        revisarColision(majomonEnemigo)
+        revisarColision(davidmonEnemigo)
+        revisarColision(alimonEnemigo)
+        revisarColision(teomonEnemigo)
+    }
 }
 
 function moverIzquierda() {
@@ -558,7 +597,9 @@ function detenerMovimiento() {
     mascotasJugadorGlobal.velocidadY = 0
 }
 
+
 function sePrecionoUnaTecla(event) {
+    if (!enableTecla) return
     switch (event.key) {
         case 'ArrowLeft':
         case 'a':
@@ -589,6 +630,33 @@ function botonActivado(idBoton, activado) {
     } else {
         boton.classList.remove('boton-activado')
     }
+}
+
+function revisarColision(enemigo) {
+    const arribaEnemigo = enemigo.y
+    const abajoEnemigo = enemigo.y + enemigo.alto
+    const derechaEnemigo = enemigo.x + enemigo.ancho
+    const izquierdaEnemigo = enemigo.x
+
+    const arribaMascota = mascotasJugadorGlobal.y
+    const abajoMascota = mascotasJugadorGlobal.y + enemigo.alto
+    const derechaMascota = mascotasJugadorGlobal.x + enemigo.ancho
+    const izquierdaMascota = mascotasJugadorGlobal.x
+
+    if(
+        abajoMascota < arribaEnemigo ||
+        arribaMascota > abajoEnemigo ||
+        derechaMascota < izquierdaEnemigo ||
+        izquierdaMascota > derechaEnemigo
+    ) {
+        return
+    }
+
+    detenerMovimiento()
+    clearInterval(intervalo)
+    enableTecla = false
+    console.log(enemigo)
+    seleccionarMascotaEnemigo(enemigo)
 }
 
 window.addEventListener("load", iniciarJuego)
