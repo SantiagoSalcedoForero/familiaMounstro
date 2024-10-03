@@ -387,12 +387,25 @@ input:checked + .tarjeta-de-mokepon p {
     position: absolute;
     top: 0;
     left: 0;
+    flex-direction: column;
     background-color: #fff;
-    border: 2px solid #FB2576;
+    border: 4px solid #FB2576;
     border-radius: 8px;
     padding: 10px;
-    width: 200px;
+    width: 110px;
     z-index: 1;
+}
+
+.informacion-ataques h4 {
+    color: #3F0071;
+    font-size: 18px;
+    font-weight: 700px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.informacion-ataques div {
+    display: flex;
 }
 
 @media (max-width: 420px) {

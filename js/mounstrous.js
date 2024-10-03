@@ -223,10 +223,13 @@ function iniciarJuego() {
                 <img src=${mounstro.foto} alt=${mounstro.nombre} />
                 <div class="informacion-ataques" style="display: none; position: absolute;">
                     <h4>Ataques:</h4>
-                    <ul>
-                        <li>${mounstro.ataques[0].nombre}</li>
-                        <li>${mounstro.ataques[1].nombre}</li>
-                    </ul>
+                    <div>
+                        <p>${mounstro.ataques[0].nombre}</p>
+                        <p>${mounstro.ataques[1].nombre}</p>
+                        <p>${mounstro.ataques[2].nombre}</p>
+                        <p>${mounstro.ataques[3].nombre}</p>
+                        <p>${mounstro.ataques[4].nombre}</p>
+                    </div>
                 </div>
             </label>
         `
@@ -244,15 +247,15 @@ function iniciarJuego() {
         if (event.target.classList.contains('tarjeta-de-mokepon')) {
             const informacionAtaques = event.target.querySelector('.informacion-ataques');
             const rect = event.target.getBoundingClientRect();
-            informacionAtaques.style.display = 'block';
-            informacionAtaques.style.top = `${rect.top}px`;
-            informacionAtaques.style.left = `${rect.right}px`;
+            informacionAtaques.style.display = 'flex';
+            informacionAtaques.style.top = `${rect.top + 30}px`;
+            informacionAtaques.style.left = `${rect.right - 100}px`;
         } else if (event.target.parentElement.classList.contains('tarjeta-de-mokepon')) {
             const informacionAtaques = event.target.parentElement.querySelector('.informacion-ataques');
             const rect = event.target.parentElement.getBoundingClientRect();
-            informacionAtaques.style.display = 'block';
-            informacionAtaques.style.top = `${rect.top}px`;
-            informacionAtaques.style.left = `${rect.right}px`;
+            informacionAtaques.style.display = 'flex';
+            informacionAtaques.style.top = `${rect.top + 30}px`;
+            informacionAtaques.style.left = `${rect.right-100}px`;
         }
     });
 
