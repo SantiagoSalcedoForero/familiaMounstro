@@ -383,6 +383,18 @@ input:checked + .tarjeta-de-mokepon p {
     color: #3F0071;
 }
 
+.informacion-ataques {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    border: 2px solid #FB2576;
+    border-radius: 8px;
+    padding: 10px;
+    width: 200px;
+    z-index: 1;
+}
+
 @media (max-width: 420px) {
 body {
     padding: 10px;
