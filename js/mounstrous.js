@@ -208,7 +208,6 @@ teomonEnemigo.ataques.push(
 mounstros.push(manumon, santimon, majomon, davidmon, alimon, teomon)
 
 function iniciarJuego() {
-
     mostrarOcultarSeccion("seleccionar-ataque", "none")
     mostrarOcultarSeccion("mensaje-seleccionar-mascota", "none")
     mostrarOcultarSeccion("reiniciar", "none")
@@ -282,7 +281,6 @@ function iniciarJuego() {
 }
 
 function seleccionarMascotaJugador() {
-
     if (inputMajomon.checked) {
         spanMascotaJugador.innerHTML = inputMajomon.id
         mascotaSeleccionadaJugador = inputMajomon.id
@@ -331,11 +329,9 @@ function seleccionarMascotaJugador() {
         mostrarOcultarSeccion("tarjeta-mascota-sleccionada", "flex")
         mensajeError("Tu mascota Seleccionada es " + mascotaSeleccionadaJugador)
     }
-
 }
 
 function seleccionarMascotaEnemigo(enemigoSelecionado) {
-
     mostrarOcultarSeccion("ver-mapa", "none")
 
     spanMascotaEnemigo.innerHTML = enemigoSelecionado.nombre
@@ -375,7 +371,6 @@ function ataqueEnemigoAleatorio() {
     console.log(arrayAtaquesEnemigos)
     combate()
 }
-
 function activarRevisarVidas() {
     if (arrayResultadoEnemigo.length === 5) {
         revisarVidas()
@@ -406,8 +401,7 @@ function combate() {
     }
 
     console.log(arrayResultadoJugador, arrayResultadoEnemigo)
-    activarRevisarVidas()
-    
+    activarRevisarVidas()   
 }
 
 function filtrarVictorias(resultados) {
@@ -432,7 +426,6 @@ function revisarVidas(){
         desabilitarBotones()
         mostrarOcultarSeccion("reiniciar", "block")
     }
-
 }
 
 function desabilitarBotones() {
@@ -572,7 +565,6 @@ function atrasSelecionarMascota() {
 }
 
 function pintarCanvas() {
-
     mascotasJugadorGlobal.x = mascotasJugadorGlobal.x + mascotasJugadorGlobal.velocidadX
     mascotasJugadorGlobal.y = mascotasJugadorGlobal.y + mascotasJugadorGlobal.velocidadY
     lienzo.clearRect(0, 0, mapa.width, mapa.height)
